@@ -2,7 +2,7 @@
 do
 { 
 1.Display the entire list of books.  Format it nicely. // display method
-  a.Display Book Title, Author, Status and Due Date 
+  a.Display Book Number, Book Title, Author, Status and Due Date 
 2.	Search for a book //search method
   a.	By Author
   b.	By Title keyword
@@ -55,13 +55,13 @@ namespace LibraryTerminal
                 }
                 else if (response == "3")
                 {
-                    // method to select a book 
+                    // method to select a book - Brett
                     displayList(libraryBooks);
-                    selectBook();
+                    selectBook(libraryBooks);
                 }
                 else if (response == "4")
                 {
-                    // method to return a book
+                    // method to return a book - karen
                 }
                 else if (String.IsNullOrEmpty(response))
                 {
@@ -76,25 +76,43 @@ namespace LibraryTerminal
             var booksList = new List<Book>();
             Book newBook = null;
 
-            newBook = new Book("Book 1", "Author 1", false, new DateTime(2015, 12, 10));
+            newBook = new Book(1, "A Time to Kill", "John Grisham", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book("Book 2", "Author 2", false, new DateTime(2016, 12, 10));
+            newBook = new Book(2, "Book 2", "Author 2", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book("Book 3", "Author 3", true, new DateTime(2017, 12, 10));
+            newBook = new Book(3, "Book 3", "Author 3", true, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book("Book 4", "Author 4", false, new DateTime(2018, 12, 10));
+            newBook = new Book(4, "Book 4", "Author 4", false, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(5, "Book 1", "Author 1", false, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(6,"Book 2", "Author 2", false, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(7, "Book 3", "Author 3", true, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(8,"Book 4", "Author 4", false, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(9,"Book 1", "Author 1", false, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(10,"Book 2", "Author 2", false, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(11,"Book 3", "Author 3", true, new DateTime());
+            booksList.Add(newBook);
+            newBook = new Book(12,"Book 4", "Author 4", false, new DateTime());
             booksList.Add(newBook);
 
             return booksList.ToArray();
         }
         public class Book
         {
+            //add book number 
+            public int BookNum {get; private set; }
             public string Title { get; private set; }
             public string Author { get; private set; }
             public bool CheckedOutStatus { get; private set; }
             public DateTime DueDate { get; private set; }  //need to figure out how to handle dates
 
-            public Book(string newTitle, string newAuthor, bool newStatus, DateTime newDate)
+            public Book(int newBookNum, string newTitle, string newAuthor, bool newStatus, DateTime newDate)
             {
                 Title = newTitle;
                 Author = newAuthor;
@@ -110,11 +128,26 @@ namespace LibraryTerminal
                 Console.WriteLine($"{bookNum}: {myBooks[i].Title} {myBooks[i].Author} {myBooks[i].CheckedOutStatus} {myBooks[i].DueDate}");
             }
         }
-        public static void selectBook()
+        public static void selectBook(Book[] myBooks)
         {
             Console.WriteLine("Enter Your Choice by Title:");
             string choice = Console.ReadLine();
-            Console.WriteLine($"You Chose: {choice} ");
+            int choiceInt;
+
+            bool isValidInt = int.TryParse(choice, out choiceInt);
+                Console.WriteLine($"You Chose: {choice} ");
+            
+            /*
+             * somehow find your boook and update info
+            foreach(Book book in myBooks)
+                if (book.BookNum = choiceInt)
+                {
+                    //update check out status and due date
+                }
+
+            */
+            // validate choice - valid book number
+            //search for book inside book list and return that book object
             // update due date and display also 
         }
     }
