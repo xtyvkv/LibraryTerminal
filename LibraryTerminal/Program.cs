@@ -78,27 +78,27 @@ namespace LibraryTerminal
 
             newBook = new Book(1, "A Time to Kill", "John Grisham", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(2, "Book 2", "Author 2", false, new DateTime());
+            newBook = new Book(2, "East of Eden", "John Steinbeck", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(3, "Book 3", "Author 3", true, new DateTime());
+            newBook = new Book(3, "Number the Stars", "Lois Lowry", true, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(4, "Book 4", "Author 4", false, new DateTime());
+            newBook = new Book(4, "The Fault in our Stars", "John Green", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(5, "Book 1", "Author 1", false, new DateTime());
+            newBook = new Book(5, "Green Eggs and Ham", "Dr. Seuss", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(6,"Book 2", "Author 2", false, new DateTime());
+            newBook = new Book(6,"In Cold Blood", "Truman Capote", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(7, "Book 3", "Author 3", true, new DateTime());
+            newBook = new Book(7, "Band of Brothers", "Stephen E. Ambrose", true, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(8,"Book 4", "Author 4", false, new DateTime());
+            newBook = new Book(8,"The Dark Tower", "Stephen King", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(9,"Book 1", "Author 1", false, new DateTime());
+            newBook = new Book(9,"Charlottes Web", "E.B. White", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(10,"Book 2", "Author 2", false, new DateTime());
+            newBook = new Book(10,"Gone with the Wind", "Margaret Mitchel", false, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(11,"Book 3", "Author 3", true, new DateTime());
+            newBook = new Book(11,"The Grapes of Wrath", "John Steinbeck", true, new DateTime());
             booksList.Add(newBook);
-            newBook = new Book(12,"Book 4", "Author 4", false, new DateTime());
+            newBook = new Book(12,"A Farewell to Arms", "Ernest Hemingway", false, new DateTime());
             booksList.Add(newBook);
 
             return booksList.ToArray();
