@@ -8,7 +8,19 @@ namespace LibraryTerminal
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Welcome to the C Sharts Library!");
+            Book[] libraryBooks = buildLibrary();
+
+            //foreach (Book book in libraryBooks)
+            //{
+            //  if (book != null)
+            //      Console.WriteLine($"{book.Title})";
+            //}
+            for (int i = 0; i < libraryBooks.Length; i++)
+            { 
+                Console.WriteLine($"{libraryBooks[i].Title} {libraryBooks[i].Author} {libraryBooks[i].CheckedOutStatus} {libraryBooks[i].DueDate}" );
+            }
+
 
         }
         public static Book[] buildLibrary()
@@ -18,11 +30,11 @@ namespace LibraryTerminal
 
             newBook = new Book("Book 1", "Author 1", false, new DateTime(2015,12,10));
             booksList.Add(newBook);
-            newBook = new Book("Book 2", "Author 2", false, new DateTime(2015, 12, 10)););
+            newBook = new Book("Book 2", "Author 2", false, new DateTime(2016,12,10));
             booksList.Add(newBook);
-            newBook = new Book("Book 3", "Author 3", false, new DateTime(2015, 12, 10)); 
+            newBook = new Book("Book 3", "Author 3", true, new DateTime(2017,12,10)); 
             booksList.Add(newBook);
-            newBook = new Book("Book 4", "Author 4", false, new DateTime(2015, 12, 10));
+            newBook = new Book("Book 4", "Author 4", false, new DateTime(2018,12,10));
             booksList.Add(newBook);
 
             return booksList.ToArray();
