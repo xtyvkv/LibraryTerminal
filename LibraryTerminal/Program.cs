@@ -249,7 +249,7 @@ namespace LibraryTerminal
                     int choiceInt = int.Parse(choice);
                     //bool isValidInt = int.TryParse(choice, out choiceInt); 
                     Book selectedBook = myBooks.Where(Book => Book.BookNum == choiceInt).FirstOrDefault();
-                    Console.WriteLine($"You chose: {selectedBook.BookNum} {selectedBook.Title} Due Date: {selectedBook.DueDate}");
+                    Console.WriteLine($"You chose: {selectedBook.BookNum} {selectedBook.Title} Due Date: {selectedBook.DueDate:MM/dd/yyyy}");
                     Console.WriteLine("Would you like to return this book? (y/n)");
                     string ans = Console.ReadLine().ToUpper();
                     if (ans == "Y")
