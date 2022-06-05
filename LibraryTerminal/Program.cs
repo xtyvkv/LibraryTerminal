@@ -56,7 +56,6 @@ namespace LibraryTerminal
                 }
                 else if (response == "3")
                 {
-                    // method to select a book - Brett
                     displayList(libraryBooks);
                     selectBook(libraryBooks);
                 }
@@ -111,7 +110,7 @@ namespace LibraryTerminal
             public string Title { get; set; }
             public string Author { get; set; }
             public bool CheckedOutStatus { get; set; }
-            public DateTime? DueDate { get; set; }  //need to figure out how to handle dates
+            public DateTime? DueDate { get; set; }
 
             public Book(int newBookNum, string newTitle, string newAuthor, bool newStatus, DateTime newDate)
             {
@@ -128,21 +127,19 @@ namespace LibraryTerminal
             {
                 int bookNum = i + 1;
                 string status;
-                
+
                 if (myBooks[i].CheckedOutStatus == true)
                 {
                     status = "Not Available";
                     Console.WriteLine($"{bookNum}: \t {myBooks[i].Title} \t Author: {myBooks[i].Author} \tStatus: {status} \t Expected Return Date: {myBooks[i].DueDate:MM/dd/yyyy}");
 
                 }
-                else 
-                { 
+                else
+                {
                     status = "Available";
                     Console.WriteLine($"{bookNum}: \t {myBooks[i].Title} \t Author: {myBooks[i].Author} \t Status: {status} ");
 
                 }
-                //Console.WriteLine($"{bookNum}: {myBooks[i].Title} {myBooks[i].Author} {myBooks[i].CheckedOutStatus} {myBooks[i].DueDate}");
-                //Console.WriteLine($"{bookNum}: {myBooks[i].Title} {myBooks[i].Author} {status} {myBooks[i].DueDate}");
             }
         }
 
@@ -163,9 +160,7 @@ namespace LibraryTerminal
                     {
                         var bookNum = i + 1;
                         Console.WriteLine($"{bookNum}: {searchResult[i].Title} {searchResult[i].Author} {searchResult[i].CheckedOutStatus} {searchResult[i].DueDate}");
-                        // revise formatting
                     }
-                    // implement selectBook
                 }
                 else
                 {
@@ -188,7 +183,6 @@ namespace LibraryTerminal
                     {
                         var bookNum = i + 1;
                         Console.WriteLine($"{bookNum}: {searchResult[i].Title} {searchResult[i].Author} {searchResult[i].CheckedOutStatus} {searchResult[i].DueDate}");
-                        // revise formatting
                     }
                     // selectBook(searchResult); <-- cant use this because it references the entire book list, not filtered results
                     // make checkout method?
@@ -242,40 +236,43 @@ namespace LibraryTerminal
                 }
             }
             return;
-            /*
-             * somehow find your boook and update info
-            foreach(Book book in myBooks)
-                if (book.BookNum = choiceInt)
-                {
-                    //update check out status and due date
-                }
-            */
-            // validate choice - valid book number
-            //search for book inside book list and return that book object
-            // update due date and display also
         }
         public static void returnBook(List<Book> myBooks)
         {
-            try
+            bool continueReturns = true;
+            while (continueReturns)
             {
-                Console.WriteLine("Enter the number of the book do you want to return?");
-                string choice = Console.ReadLine();
-                int choiceInt = int.Parse(choice);
-                //bool isValidInt = int.TryParse(choice, out choiceInt); 
-                Book selectedBook = myBooks.Where(Book => Book.BookNum == choiceInt).FirstOrDefault();
-                Console.WriteLine($"You chose: {selectedBook.BookNum} {selectedBook.Title}");
-                Console.WriteLine("Would you like to return this book? (y/n)");
-                string ans = Console.ReadLine().ToUpper();
-                if (ans == "Y")
+                try
                 {
-                    selectedBook.CheckedOutStatus = false;
-                    selectedBook.DueDate = null;
-
+                    Console.WriteLine("Enter the number of the book do you want to return?");
+                    string choice = Console.ReadLine();
+                    int choiceInt = int.Parse(choice);
+                    //bool isValidInt = int.TryParse(choice, out choiceInt); 
+                    Book selectedBook = myBooks.Where(Book => Book.BookNum == choiceInt).FirstOrDefault();
+                    Console.WriteLine($"You chose: {selectedBook.BookNum} {selectedBook.Title} Due Date: {selectedBook.DueDate}");
+                    Console.WriteLine("Would you like to return this book? (y/n)");
+                    string ans = Console.ReadLine().ToUpper();
+                    if (ans == "Y")
+                    {
+                        if (selectedBook.CheckedOutStatus == true)
+                        {
+                            selectedBook.CheckedOutStatus = false;
+                            selectedBook.DueDate = null;
+                            Console.WriteLine($" { selectedBook.BookNum}. { selectedBook.Title} - Successfully Returned.");
+                        }
+                        else { Console.WriteLine("This book isn't checked out so you can't return it."); }
+                    }
+                    Console.WriteLine("Would you like to return another book? (y/n)");
+                    ans = Console.ReadLine().ToUpper();
+                    if (ans == "N")
+                    {
+                        continueReturns = false;    
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
     }
