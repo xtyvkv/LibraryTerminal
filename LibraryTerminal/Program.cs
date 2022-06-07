@@ -259,24 +259,31 @@ namespace LibraryTerminal
                     if (selectedBook != null)
                     {
                         Console.WriteLine($"You chose: {selectedBook.BookNum} {selectedBook.Title} Due Date: {selectedBook.DueDate:MM/dd/yyyy}");
-                        Console.WriteLine("Would you like to return this book? (y/n)");
-                        string ans = Console.ReadLine().ToUpper();
-                        if (ans == "Y")
+                        if (selectedBook.CheckedOutStatus == false)
                         {
-                            if (selectedBook.CheckedOutStatus == true)
+                            Console.WriteLine("This book is already in our library. You must've checked it out from a different branch.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Would you like to return this book? (y/n)");
+                            string ans = Console.ReadLine().ToUpper();
+                            if (ans == "Y")
                             {
-                                selectedBook.CheckedOutStatus = false;
-                                selectedBook.DueDate = null;
-                                Console.WriteLine($" { selectedBook.BookNum}. { selectedBook.Title} - Successfully Returned.");
+                                if (selectedBook.CheckedOutStatus == true)
+                                {
+                                    selectedBook.CheckedOutStatus = false;
+                                    selectedBook.DueDate = null;
+                                    Console.WriteLine($" { selectedBook.BookNum}. { selectedBook.Title} - Successfully Returned.");
+                                }
+                                else { Console.WriteLine("This book isn't checked out so you can't return it."); }
                             }
-                            else { Console.WriteLine("This book isn't checked out so you can't return it."); }
-                        }
-                        Console.WriteLine("Would you like to return another book? (y/n)");
-                        ans = Console.ReadLine().ToUpper();
-                        if (ans == "N")
-                        {
-                            continueReturns = false;
-                        }
+                            Console.WriteLine("Would you like to return another book? (y/n)");
+                            ans = Console.ReadLine().ToUpper();
+                            if (ans == "N")
+                            {
+                                continueReturns = false;
+                            }
+                        }    
                     }
                 }
                 catch (Exception ex)
